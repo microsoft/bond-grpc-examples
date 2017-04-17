@@ -1,0 +1,32 @@
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+// Generated C# code will be defined in this namespace.
+namespace Bond.Grpc.Examples.Calculator;
+
+// Services arguments and return values must be contained in a struct.
+// This contains two doubles and is used as the input for Add and Divide methods.
+struct BinaryOpArgs
+{
+    0: double left;
+    1: double right;
+}
+
+// This is a box for the result of a call to Add or Divide.
+struct Result
+{
+    0: double value;
+}
+
+// Our service definition. You can organize your methods into multiple services,
+// in the same or in different files.
+service Calculator
+{
+    Result Add(BinaryOpArgs);
+    Result Divide(BinaryOpArgs);
+}
+
+enum CalculatorErrorCode
+{
+    DivideByZero = 1;
+}
