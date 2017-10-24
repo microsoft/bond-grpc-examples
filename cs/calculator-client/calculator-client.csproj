@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.props" Condition="Exists('..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.props')" />
+  <Import Project="..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.props" Condition="Exists('..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +12,9 @@
     <AssemblyName>CalculatorClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <BondOptions>--grpc</BondOptions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,43 +42,41 @@
        release, the grpc file needs to be manually included in compilation. -->
   <ItemGroup>
     <Compile Include="src\CalculatorClient.cs" />
-    <BondCodegen Include="..\calculator.bond">
-      <Options>--grpc</Options>
-    </BondCodegen>
-    <Compile Include="$(IntermediateOutputPath)\calculator_grpc.cs" />
+    <BondCodegen Include="..\calculator.bond" />
     <!-- The popular ReSharper add-in has trouble finding the automatically
          compiled files, so as a work around, we list them here, but set their
          Condition to false. ReSharper is able to find the files then, but the
          C# compiler doesn't try to compile them twice. -->
     <Compile Include="$(IntermediateOutputPath)\calculator_types.cs" Condition="False" />
+    <Compile Include="$(IntermediateOutputPath)\calculator_grpc.cs" Condition="False" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Bond">
-      <HintPath>..\packages\Bond.Core.CSharp.5.3.0\lib\net45\Bond.dll</HintPath>
+    <Reference Include="Bond, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Core.CSharp.7.0.0\lib\net45\Bond.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bond.Attributes">
-      <HintPath>..\packages\Bond.Core.CSharp.5.3.0\lib\net45\Bond.Attributes.dll</HintPath>
+    <Reference Include="Bond.Attributes, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Core.CSharp.7.0.0\lib\net45\Bond.Attributes.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bond.Grpc">
-      <HintPath>..\packages\Bond.Grpc.CSharp.5.3.0\lib\net45\Bond.Grpc.dll</HintPath>
+    <Reference Include="Bond.Grpc, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Grpc.CSharp.7.0.0\lib\net45\Bond.Grpc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bond.IO">
-      <HintPath>..\packages\Bond.Core.CSharp.5.3.0\lib\net45\Bond.IO.dll</HintPath>
+    <Reference Include="Bond.IO, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Core.CSharp.7.0.0\lib\net45\Bond.IO.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bond.JSON">
-      <HintPath>..\packages\Bond.Runtime.CSharp.5.3.0\lib\net45\Bond.JSON.dll</HintPath>
+    <Reference Include="Bond.JSON, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Runtime.CSharp.7.0.0\lib\net45\Bond.JSON.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Bond.Reflection">
-      <HintPath>..\packages\Bond.Core.CSharp.5.3.0\lib\net45\Bond.Reflection.dll</HintPath>
+    <Reference Include="Bond.Reflection, Version=7.0.0.100, Culture=neutral, PublicKeyToken=87e9ead25a117286, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bond.Core.CSharp.7.0.0\lib\net45\Bond.Reflection.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Grpc.Core">
-      <HintPath>..\packages\Grpc.Core.1.1.0\lib\net45\Grpc.Core.dll</HintPath>
+    <Reference Include="Grpc.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grpc.Core.1.3.0\lib\net45\Grpc.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -99,10 +100,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.props'))" />
-    <Error Condition="!Exists('..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.targets'))" />
-    <Error Condition="!Exists('..\packages\Grpc.Core.1.1.0\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.1.1.0\build\net45\Grpc.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Grpc.Core.1.3.0\build\net45\Grpc.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grpc.Core.1.3.0\build\net45\Grpc.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.props'))" />
+    <Error Condition="!Exists('..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.targets'))" />
   </Target>
-  <Import Project="..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.targets" Condition="Exists('..\packages\Bond.CSharp.5.3.0\build\Bond.CSharp.targets')" />
-  <Import Project="..\packages\Grpc.Core.1.1.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.1.0\build\net45\Grpc.Core.targets')" />
+  <Import Project="..\packages\Grpc.Core.1.3.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.1.3.0\build\net45\Grpc.Core.targets')" />
+  <Import Project="..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.targets" Condition="Exists('..\packages\Bond.CSharp.7.0.0\build\Bond.CSharp.targets')" />
 </Project>
