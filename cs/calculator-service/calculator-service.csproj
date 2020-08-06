@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bond.CSharp" Version="9.0.2" />
-    <PackageReference Include="Bond.Grpc.CSharp" Version="9.0.2" />
+    <PackageReference Include="Bond.CSharp" Version="9.0.3" />
+    <PackageReference Include="Bond.Grpc.CSharp" Version="9.0.3" />
   </ItemGroup>
 </Project>
