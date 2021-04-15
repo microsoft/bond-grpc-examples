@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <ProjectGuid>{7991DCA5-FBE5-49CB-BF32-FC8249AC9713}</ProjectGuid>
     <RootNamespace>Bond.Grpc.Examples.Calculator</RootNamespace>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bond.CSharp" Version="9.0.3" />
-    <PackageReference Include="Bond.Grpc.CSharp" Version="9.0.3" />
+    <PackageReference Include="Bond.CSharp" Version="9.0.5" />
+    <PackageReference Include="Bond.Grpc.CSharp" Version="9.0.5" />
   </ItemGroup>
 </Project>
