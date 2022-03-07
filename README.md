@@ -1,3 +1,8 @@
-# Contributing
+# Bond-over-gRPC deprecated
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+**Bond-over-gRPC is deprecated and will be completely removed from Bond in
+May 2022.** See GitHub issue [\#1131, Bond-over-gRPC will be deprecated
+February 2022](https://github.com/microsoft/bond/issues/1131), for full
+details.
+
+This repository is now archived and read-only.
